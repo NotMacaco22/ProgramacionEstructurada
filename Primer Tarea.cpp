@@ -50,9 +50,9 @@ int main(){
 }
 
 void principalMenu(int cantEst, float sum){
-    int opcMenu, position, bestGrade = -10000, worstGrade, opcEdit, posName, posGrade;
+    int opcMenu, position, bestGrade = -10000, worstGrade, opcEdit, posName, posGrade, countWorst = 1, positions[capacity];
     float aux;
-    
+
     cout << "* * * MENU PRINCIPAL - NOTAS PRIMER CORTE * * *\n" << endl;
     cout << "   1. Mostrar Nombre y Nota mas Alta" << endl;
     cout << "   2. Mostrar Nombre y Nota mas Baja" << endl;
@@ -66,38 +66,54 @@ void principalMenu(int cantEst, float sum){
     
     case 1:
         system("cls");
-        for (int i = 0; i < cantEst; i++){
-            if (student[i].notas > bestGrade){
-                bestGrade = student[i].notas;
-                position = i;
+        for (int i = 0; i < cantEst; i++) {
+            if (student[i].notas > bestGrade) {
+            bestGrade = student[i].notas;
+            position = i;
             }
         }
-        
-        cout << "\tNOTA MAS ALTA" << endl;
-        cout << "Nombre: " << student[position].studentName << "    Nota: " << student[position].notas << endl;
+        system("cls");
+        cout << "\tNOTA MAS ALTA\n" << endl;
+
+        for (int i = 0; i < cantEst; i++) {
+        if (student[i].notas == bestGrade) {
+        cout << "Nombre: " << student[i].studentName << "    Nota: " << student[i].notas << endl;
+            }
+        }
         cout << "* * * * * * * * * * * * * * * *" << endl;
+        cout << endl;
 
         backToMenu(cantEst, sum);
 
         break;
 
-    case 2: //nota mas baja
-    worstGrade = student[0].notas;  // Inicializa worstGrade con la primera nota
+    case 2:
+        worstGrade = student[0].notas;  // Inicializa worstGrade con la primera nota
+        positions[0] = 0;  // Agrega la primera posición a las notas más bajas
 
-    for (int i = 1; i < cantEst; i++) {  // Comienza desde el segundo estudiante
-        if (student[i].notas < worstGrade) {
-            worstGrade = student[i].notas;  // Actualiza worstGrade si se encuentra una nota menor
-            position = i;
-        }
-    }
+        for (int i = 1; i < cantEst; i++) {
+            if (student[i].notas < worstGrade) {
+                worstGrade = student[i].notas;  // Actualiza worstGrade si se encuentra una nota menor
+                countWorst = 1;  // Reinicia el contador de notas más bajas
+                positions[0] = i;  // Actualiza la primera posición en el arreglo
+            } else if (student[i].notas == worstGrade) {
+                positions[countWorst] = i;  // Agrega la posición si la nota es igual a la peor nota actual
+                countWorst++;
+                }
+            }
 
-    cout << "\tNOTA MAS BAJA" << endl;
-        cout << "Nombre: " << student[position].studentName << "    Nota: " << student[position].notas << endl;
+        cout << "\tNOTAS MAS BAJAS" << endl;
+            for (int i = 0; i < countWorst; i++) {
+                int pos = positions[i];
+                cout << "Nombre: " << student[pos].studentName << "    Nota: " << student[pos].notas << endl;
+            }
         cout << "* * * * * * * * * * * * * * * *" << endl;
+        cout << endl;
 
-        backToMenu(cantEst, sum);
+    backToMenu(cantEst, sum);
 
     break;
+
 
     
     case 3:
@@ -150,6 +166,7 @@ void principalMenu(int cantEst, float sum){
             }
 
             else{
+                system("cls");
                 cout << "OPCION NO VALIDA - VOLVIENDO AL MENU PRINCIPAL" << endl;
                 principalMenu(cantEst,sum);
             }
@@ -206,7 +223,7 @@ void principalMenu(int cantEst, float sum){
 
     case 5:
         system("cls"); 
-        cout << "Notas ordenadas de menor a mayor: " << endl;
+        cout << "Notas ordenadas de menor a mayor:\n " << endl;
         for (int i = 0; i < cantEst; i++){
             for (int j = i+1; j < cantEst; j++){
                 if (student[i].notas > student[j].notas){
