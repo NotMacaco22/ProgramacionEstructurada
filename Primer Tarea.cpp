@@ -88,6 +88,7 @@ void principalMenu(int cantEst, float sum){
         break;
 
     case 2:
+        system("cls");
         worstGrade = student[0].notas;  // Inicializa worstGrade con la primera nota
         positions[0] = 0;  // Agrega la primera posición a las notas más bajas
 
