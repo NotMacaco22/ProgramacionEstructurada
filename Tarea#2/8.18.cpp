@@ -14,15 +14,15 @@ int main() {
     cin >> cont;
     cout << endl;
 
-    if (cont <= 0) {
-        system("cls || clear");
+    if (cont <= 0) { //Evita qque se ingresen lineas menores o igual a 0
+        system("cls || clear"); //Borra pantalla, cls para windows y clear para Mac OS 
         cout << "Valor No Aceptado - Vuelva a intentarlo nuevamente" << endl;
         cout << endl;
         main();
-    } else {
-        while (aux < cont + 1 && cin.getline(lineas[aux], MAX_LENGHT)) {
+    } else { //Ciclo While que permite que se ingresen la cantidad de enunciados anteriormente solicitado
+        while (aux < cont + 1 && cin.getline(lineas[aux], MAX_LENGHT)) { //El cin.getline() permite al programa leer toda una linea, incluyendo espacios
             cout << "Ingrese la linea #" << aux + 1 << ": ";
-            aux++;
+            aux++; // Contador que ira sumando segun se ingresen los enunciados, evitando asi que se ingresen mas enunciados de los que el usuario quiere.
         }
 
         system("cls || clear");
