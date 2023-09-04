@@ -8,7 +8,7 @@ es menor que, igual que o mayor que la segunda cadena. */
 using namespace std;
 
 int main(){
-    char firstSentence[20], secondSentence[20];
+    char firstSentence[100], secondSentence[100];
     int result;
 
     cout << "Ingrese la primera cadena de caracteres : ";
