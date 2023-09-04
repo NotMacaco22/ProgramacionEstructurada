@@ -12,12 +12,12 @@ int main(){
     int result;
 
     cout << "Ingrese la primera cadena de caracteres : ";
-    cin >> firstSentence;
+    cin.getline(firstSentence, sizeof(firstSentence));
     
     cout << endl;
 
     cout << "Ingrese la segunda cadena de caracteres: ";
-    cin >> secondSentence;
+    cin.getline(secondSentence, sizeof(secondSentence));
 
     cout << endl;
 
